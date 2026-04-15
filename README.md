@@ -1,3 +1,4 @@
+Hi
 # SportsLocator
 
 Find sports venues near you. A Progressive Web App (PWA) built with React and Vite.
