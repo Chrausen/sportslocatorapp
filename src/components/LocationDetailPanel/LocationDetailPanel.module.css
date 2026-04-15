@@ -111,6 +111,19 @@
   background: #E65100;
 }
 
+.deleteButton {
+  background: #F44336;
+  color: white;
+}
+
+.deleteButton:hover {
+  background: #E53935;
+}
+
+.deleteButton:active {
+  background: #C62828;
+}
+
 @media (min-width: 768px) {
   .panel {
     position: fixed;

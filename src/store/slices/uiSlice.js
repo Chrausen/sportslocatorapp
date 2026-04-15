@@ -6,7 +6,8 @@ const initialState = {
   userLocation: null,
   isAddingSpot: false,
   pendingPin: null,
-  toast: null
+  toast: null,
+  geolocationDenied: false
 }
 
 const uiSlice = createSlice({
@@ -36,6 +37,9 @@ const uiSlice = createSlice({
     },
     clearToast: (state) => {
       state.toast = null
+    },
+    setGeolocationDenied: (state, action) => {
+      state.geolocationDenied = action.payload
     }
   }
 })
@@ -48,7 +52,8 @@ export const {
   setIsAddingSpot,
   setPendingPin,
   showToast,
-  clearToast
+  clearToast,
+  setGeolocationDenied
 } = uiSlice.actions
 
 export default uiSlice.reducer

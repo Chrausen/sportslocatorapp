@@ -14,12 +14,14 @@ export function FilterBar() {
   const activeFilter = useSelector(state => state.ui.filter)
 
   return (
-    <div className={styles.filterBar}>
+    <div className={styles.filterBar} role="group" aria-label="Filter sports by type">
       {filters.map(filter => (
         <button
           key={filter.id}
           className={`${styles.chip} ${activeFilter === filter.id ? styles.active : ''}`}
           onClick={() => dispatch(setFilter(filter.id))}
+          aria-label={`Filter by ${filter.label}`}
+          aria-pressed={activeFilter === filter.id}
         >
           {filter.label}
         </button>

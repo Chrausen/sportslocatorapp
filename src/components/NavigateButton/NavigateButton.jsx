@@ -8,7 +8,11 @@ export function NavigateButton({ spot }) {
   }
 
   return (
-    <button className={styles.navigateButton} onClick={handleNavigate}>
+    <button
+      className={styles.navigateButton}
+      onClick={handleNavigate}
+      aria-label={`Navigate to ${spot.name}`}
+    >
       🗺️ Navigate
     </button>
   )

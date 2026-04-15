@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { clearSelection, showToast } from '../../store/slices/uiSlice'
 import { blockSpot, unblockSpot } from '../../store/slices/occupancySlice'
+import { deleteSpot } from '../../store/slices/spotsSlice'
 import { distanceBetween } from '../../utils/distance'
 import { buildNavigationUrl } from '../../utils/navigation'
 import { NavigateButton } from '../NavigateButton/NavigateButton'
@@ -74,11 +75,19 @@ export function LocationDetailPanel() {
     window.open(url, '_blank')
   }
 
+  const handleDelete = () => {
+    if (window.confirm('Are you sure you want to delete this spot?')) {
+      dispatch(deleteSpot(spot.id))
+      dispatch(clearSelection())
+    }
+  }
+
   return (
     <div className={styles.panel}>
       <button
         className={styles.closeButton}
         onClick={() => dispatch(clearSelection())}
+        aria-label="Close spot details"
       >
         ✕
       </button>
@@ -112,12 +121,26 @@ export function LocationDetailPanel() {
         <button
           className={isBlocked ? styles.unblockButton : styles.blockButton}
           onClick={handleToggleOccupancy}
+          aria-label={isBlocked ? 'Mark spot as free' : 'Mark spot as blocked'}
         >
           {isBlocked ? 'Mark as Free' : 'Mark as Blocked'}
         </button>
         {isBlocked && userLocation && (
-          <button className={styles.rerouteButton} onClick={handleReroute}>
+          <button
+            className={styles.rerouteButton}
+            onClick={handleReroute}
+            aria-label="Find next free spot"
+          >
             🔄 Find Next Free Spot
+          </button>
+        )}
+        {spot.isUserAdded && (
+          <button
+            className={styles.deleteButton}
+            onClick={handleDelete}
+            aria-label="Delete this spot"
+          >
+            🗑️ Delete Spot
           </button>
         )}
       </div>

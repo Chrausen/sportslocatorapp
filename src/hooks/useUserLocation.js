@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setUserLocation } from '../store/slices/uiSlice'
+import { setUserLocation, setGeolocationDenied } from '../store/slices/uiSlice'
 
 export function useUserLocation() {
   const dispatch = useDispatch()
@@ -8,6 +8,7 @@ export function useUserLocation() {
   useEffect(() => {
     if (!navigator.geolocation) {
       console.error('Geolocation is not supported by this browser.')
+      dispatch(setGeolocationDenied(true))
       return
     }
 
@@ -15,9 +16,13 @@ export function useUserLocation() {
       (position) => {
         const { latitude, longitude } = position.coords
         dispatch(setUserLocation({ lat: latitude, lng: longitude }))
+        dispatch(setGeolocationDenied(false))
       },
       (error) => {
         console.error('Geolocation error:', error)
+        if (error.code === error.PERMISSION_DENIED) {
+          dispatch(setGeolocationDenied(true))
+        }
       },
       {
         enableHighAccuracy: true,

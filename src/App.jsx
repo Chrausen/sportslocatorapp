@@ -3,6 +3,8 @@ import { MapView } from './components/MapView/MapView'
 import { FilterBar } from './components/FilterBar/FilterBar'
 import { LocationDetailPanel } from './components/LocationDetailPanel/LocationDetailPanel'
 import { FindNearestFreeButton } from './components/FindNearestFreeButton/FindNearestFreeButton'
+import { AddSpotButton } from './components/AddSpotButton/AddSpotButton'
+import { PinDropOverlay } from './components/PinDropOverlay/PinDropOverlay'
 import { Toast } from './components/Toast/Toast'
 
 function App() {
@@ -26,7 +28,9 @@ function App() {
         <MapView />
         <FilterBar />
         <FindNearestFreeButton />
+        <AddSpotButton />
         <LocationDetailPanel />
+        <PinDropOverlay />
         <Toast />
       </div>
     </LoadScript>
