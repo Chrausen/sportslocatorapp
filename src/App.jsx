@@ -1,8 +1,31 @@
+import { LoadScript } from '@react-google-maps/api'
+import { MapView } from './components/MapView/MapView'
+import { FilterBar } from './components/FilterBar/FilterBar'
+import { LocationDetailPanel } from './components/LocationDetailPanel/LocationDetailPanel'
+
 function App() {
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+
+  if (!apiKey) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <h1>SportsLocator</h1>
+        <p style={{ color: 'red', fontSize: '1.1rem' }}>
+          Error: Google Maps API key is not configured.
+        </p>
+        <p>Please add VITE_GOOGLE_MAPS_API_KEY to your .env.local file.</p>
+      </div>
+    )
+  }
+
   return (
-    <div style={{ textAlign: 'center', padding: '2rem' }}>
-      <h1 style={{ fontSize: '3rem', fontWeight: 'bold' }}>SportsLocator</h1>
-    </div>
+    <LoadScript googleMapsApiKey={apiKey}>
+      <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+        <MapView />
+        <FilterBar />
+        <LocationDetailPanel />
+      </div>
+    </LoadScript>
   )
 }
 

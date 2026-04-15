@@ -1,0 +1,67 @@
+.panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 16px 16px 0 0;
+  padding: 1.5rem;
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.15);
+  max-height: 50vh;
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.closeButton:hover {
+  color: #000;
+}
+
+.panel h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.free {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.blocked {
+  color: #FF6B6B;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .panel {
+    position: fixed;
+    bottom: auto;
+    right: 0;
+    left: auto;
+    width: 400px;
+    height: 100vh;
+    border-radius: 0;
+    max-height: 100vh;
+  }
+}
