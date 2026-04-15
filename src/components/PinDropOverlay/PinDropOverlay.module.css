@@ -5,7 +5,7 @@
   right: 0;
   bottom: 0;
   pointer-events: none;
-  z-index: 15;
+  z-index: 120;
 }
 
 .crosshair {
@@ -52,7 +52,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   pointer-events: none;
-  z-index: 16;
+  z-index: 121;
 }
 
 .instructions p {
@@ -75,7 +75,7 @@
   box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
   transition: all 0.2s ease;
   pointer-events: all;
-  z-index: 16;
+  z-index: 121;
 }
 
 .cancelButton:hover {
