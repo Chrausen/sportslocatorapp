@@ -1,0 +1,57 @@
+.sport-filter {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(15, 15, 25, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0 0 16px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.sport-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-btn {
+  flex-shrink: 0;
+  padding: 7px 16px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+/* Active states per sport */
+.filter-btn--all.filter-btn--active {
+  background: #fff;
+  color: #0f0f19;
+}
+
+.filter-btn--tabletennis.filter-btn--active {
+  background: #1565C0;
+  border-color: #1565C0;
+  color: #fff;
+}
+
+.filter-btn--basketball.filter-btn--active {
+  background: #E64A19;
+  border-color: #E64A19;
+  color: #fff;
+}
+
+.filter-btn--boule.filter-btn--active {
+  background: #2E7D32;
+  border-color: #2E7D32;
+  color: #fff;
+}
