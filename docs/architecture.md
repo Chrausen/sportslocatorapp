@@ -3,8 +3,8 @@
 ## Overview
 
 A single-page React PWA. No backend. All state is managed by Redux Toolkit and persisted to
-`localStorage`. Google Maps renders the map and pins. The app is installable and works offline
-for existing spots (the Maps tiles themselves require a network connection).
+`localStorage`. OpenStreetMap renders the map and pins. The app is installable and works offline
+for existing spots (the map tiles themselves require a network connection).
 
 ---
 
@@ -12,7 +12,7 @@ for existing spots (the Maps tiles themselves require a network connection).
 
 ```
 App
-├── MapView                        # Full-screen Google Map
+├── MapView                        # Full-screen OpenStreetMap
 │   ├── SportPin (× n)             # Marker per spot, color-coded by sport + occupancy
 │   └── UserLocationMarker         # Blue dot for current GPS position
 ├── FilterBar                      # Sport-type filter chips (All / TT / BB / Boule)
@@ -99,7 +99,7 @@ Expired occupancy entries (where `Date.now() > Date.parse(ts)`) are filtered out
 | 9 | Falckensteiner Strand — Boule       | boule         | 54.37980  | 10.17980 |
 |10 | Max-Planck-Str. — Streetball        | basketball    | 54.34580  | 10.11980 |
 
-> Coordinates are approximate. Verify against Google Maps before shipping.
+> Coordinates are approximate. Verify in the field or via OpenStreetMap before shipping.
 
 ---
 
@@ -138,17 +138,33 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet'
 
 ---
 
+## External Dependencies
+
+**None required for core functionality.**
+
+The app operates entirely offline once loaded:
+
+- **Map tiles:** OpenStreetMap (free, open-source, no API key required)
+- **Geolocation:** Browser's native Geolocation API (no external service)
+- **Navigation:** Uses `geo:` URI scheme (delegates to device's native map app)
+- **Data storage:** `localStorage` only (no cloud sync, no backend)
+
+The only network requirement is downloading map tiles from OpenStreetMap when the app is first loaded or tiles are scrolled into view. All user data, spots, and occupancy state are stored locally and never sent to external servers.
+
+---
+
 ## Navigation Handoff
 
 ```js
 // utils/navigation.js
 export function buildNavigationUrl({ lat, lng }) {
-  // Opens Google Maps directions on all platforms
-  return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=walking`
+  // Opens device's native map app via geo: URI (no external API)
+  return `geo:${lat},${lng}`
 }
 ```
 
-Called from `NavigateButton` and `RerouteButton` via `window.open(url, '_blank')`.
+Called from `NavigateButton` and `RerouteButton` via `window.open(url)`.
+Works on all platforms (Android, iOS) — delegates to user's installed map app.
 
 ---
 
