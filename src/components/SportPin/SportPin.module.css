@@ -1,0 +1,59 @@
+.sportPin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.pinMarker {
+  width: 28px;
+  height: 32px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+}
+
+.sportPin:hover .pinMarker {
+  transform: rotate(-45deg) scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.popup {
+  padding: 0.5rem 0;
+}
+
+.popupTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.popupSport {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.popupDescription {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
+  color: #777;
+  font-style: italic;
+}
+
+.popupStatus {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.popupStatus.free {
+  color: #4CAF50;
+}
+
+.popupStatus.blocked {
+  color: #FF6B6B;
+}

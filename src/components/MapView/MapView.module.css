@@ -1,0 +1,87 @@
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.userLocationIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.userLocationDot {
+  width: 16px;
+  height: 16px;
+  background: #2196F3;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.4);
+}
+
+.emptyState {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  text-align: center;
+  max-width: 300px;
+}
+
+.emptyStateTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.emptyStateText {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.geolocationBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #FFC107;
+  color: #333;
+  padding: 1rem;
+  text-align: center;
+  z-index: 30;
+  font-size: 0.95rem;
+}
+
+/* Leaflet customization */
+:global(.leaflet-container) {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+:global(.leaflet-popup-content-wrapper) {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+:global(.leaflet-marker-icon) {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+:global(.leaflet-marker-icon:hover) {
+  transform: scale(1.2);
+}

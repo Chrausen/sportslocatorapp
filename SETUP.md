@@ -1,57 +1,20 @@
 # 🚀 SportsLocator - Anleitung zum Starten
 
+## ⚡ Super einfach - kein API Key nötig!
+
+Die App verwendet **OpenStreetMap** (kostenlos, keine Authentifizierung) statt Google Maps.
+
 ## Inhaltsverzeichnis
-1. [Google Maps API Key besorgen](#schritt-1-google-maps-api-key-besorgen)
-2. [Projekt vorbereiten](#schritt-2-projekt-vorbereiten)
-3. [Entwicklungsserver starten](#schritt-3-entwicklungsserver-starten)
-4. [Anwendung testen](#schritt-4-anwendung-testen)
-5. [Troubleshooting](#troubleshooting)
+1. [Projekt vorbereiten](#schritt-1-projekt-vorbereiten)
+2. [Entwicklungsserver starten](#schritt-2-entwicklungsserver-starten)
+3. [Anwendung testen](#schritt-3-anwendung-testen)
+4. [Troubleshooting](#troubleshooting)
 
 ---
 
-## Schritt 1: Google Maps API Key besorgen
+## Schritt 1: Projekt vorbereiten
 
-### 1.1 Google Cloud Projekt erstellen
-
-1. Öffne https://console.cloud.google.com/ in deinem Browser
-2. Melde dich mit deinem Google-Konto an (oder erstelle ein neues)
-3. Wenn aufgefordert, akzeptiere die Bedingungen
-
-### 1.2 Neues Projekt erstellen
-
-1. Oben links findest du die **Projekt-Auswahl** (zeigt "Mein erstes Projekt" oder ähnlich)
-2. Klicke darauf → **"Neues Projekt"**
-3. Gib einen Namen ein, z.B.: "SportsLocator"
-4. Klicke **"Erstellen"** (dauert 1-2 Minuten)
-
-### 1.3 Maps JavaScript API aktivieren
-
-1. Oben in der Suchleiste suchst du: **"Maps JavaScript API"**
-2. Klicke auf das erste Ergebnis
-3. Klicke auf den großen blauen **"AKTIVIEREN"** Button
-4. Warte bis die Seite aktualisiert
-
-### 1.4 API-Schlüssel erstellen
-
-1. Klicke oben auf **"Credentials"** (oder "Zugangsdaten")
-2. Klicke **"+ CREATE CREDENTIALS"** (oben)
-3. Wähle **"API Key"**
-4. Ein Pop-up erscheint mit deinem neuen API-Schlüssel
-5. **Kopiere den Schlüssel** (er sieht so aus: `AIzaSy...`)
-
-### 1.5 API-Schlüssel einschränken (Sicherheit)
-
-1. Klicke auf deinen gerade erstellten Schlüssel in der Liste
-2. Unter **"Anwendungsbeschränkungen"** wähle **"HTTP Referrer"**
-3. Klicke **"Website-Einschränkung hinzufügen"**
-4. Gib ein: `http://localhost:5173/*`
-5. Klicke **"Speichern"**
-
----
-
-## Schritt 2: Projekt vorbereiten
-
-### 2.1 Terminal/Kommandozeile öffnen
+### 1.1 Terminal/Kommandozeile öffnen
 
 **Windows:**
 - Drücke `Windows-Taste + R`
@@ -60,7 +23,7 @@
 **Mac/Linux:**
 - Öffne die Terminal-App
 
-### 2.2 Ins Projekt-Verzeichnis navigieren
+### 1.2 Ins Projekt-Verzeichnis navigieren
 
 ```bash
 cd /home/user/sportslocatorapp
@@ -68,40 +31,7 @@ cd /home/user/sportslocatorapp
 
 (oder der Pfad, wo dein Projekt liegt)
 
-### 2.3 .env.local Datei bearbeiten
-
-Die Datei `.env.local` existiert bereits im Projekt-Root. Öffne sie mit einem Texteditor:
-
-**Windows (mit notepad):**
-```bash
-notepad .env.local
-```
-
-**Mac/Linux (mit nano):**
-```bash
-nano .env.local
-```
-
-Oder öffne die Datei mit deinem Lieblings-Texteditor (VS Code, etc.)
-
-### 2.4 API-Schlüssel eintragen
-
-Ersetze den Inhalt durch:
-
-```
-VITE_GOOGLE_MAPS_API_KEY=DEIN_API_SCHLUESSEL_HIER
-```
-
-Beispiel:
-```
-VITE_GOOGLE_MAPS_API_KEY=AIzaSyDxN3tR9vL2mK4oP5qR6sT7uV8wX9yZ0aB
-```
-
-Speichere die Datei:
-- **Windows/Linux:** `Ctrl + S`
-- **Mac:** `Cmd + S`
-
-### 2.5 Abhängigkeiten installieren
+### 1.3 Abhängigkeiten installieren
 
 Gib im Terminal ein:
 
@@ -119,9 +49,9 @@ Das dauert 1-2 Minuten. Warte bis es fertig ist.
 
 ---
 
-## Schritt 3: Entwicklungsserver starten
+## Schritt 2: Entwicklungsserver starten
 
-### 3.1 Dev-Server starten
+### 2.1 Dev-Server starten
 
 Gib im Terminal ein:
 
@@ -140,7 +70,7 @@ VITE v6.4.1 building for production...
 
 **Wichtig:** Lasse dieses Terminal-Fenster offen!
 
-### 3.2 Im Browser öffnen
+### 2.2 Im Browser öffnen
 
 1. Öffne deinen Lieblings-Browser (Chrome, Firefox, Safari, Edge)
 2. Gib die URL ein: **http://localhost:5173**
@@ -150,7 +80,7 @@ Die SportsLocator App sollte jetzt laden! 🎉
 
 ---
 
-## Schritt 4: Anwendung testen
+## Schritt 3: Anwendung testen
 
 ### 4.1 Funktionen testen
 

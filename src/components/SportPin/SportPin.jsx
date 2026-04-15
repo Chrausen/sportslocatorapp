@@ -1,5 +1,7 @@
-import { Marker } from '@react-google-maps/api'
+import { Marker, Popup } from 'react-leaflet'
 import { useSelector } from 'react-redux'
+import L from 'leaflet'
+import styles from './SportPin.module.css'
 
 const sportColors = {
   'table-tennis': '#2196F3',
@@ -15,21 +17,42 @@ export function SportPin({ spot, isSelected, onClick }) {
 
   const color = isBlocked ? blockedColor : sportColors[spot.sport]
 
-  const icon = {
-    path: 'M 0,0 C -2,-2 -2,-6 0,-6 C 2,-6 2,-2 0,0 Z',
-    fillColor: color,
-    fillOpacity: 1,
-    strokeColor: '#fff',
-    strokeWeight: 2,
-    scale: 3
+  // Create custom div icon for sport pin
+  const icon = L.divIcon({
+    className: styles.sportPin,
+    html: `<div class="${styles.pinMarker}" style="background-color: ${color};"></div>`,
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+  })
+
+  const sportLabels = {
+    'table-tennis': '🏓 Table Tennis',
+    'basketball': '🏀 Basketball',
+    'boule': '🎱 Boule'
   }
 
   return (
     <Marker
-      position={{ lat: spot.lat, lng: spot.lng }}
+      position={[spot.lat, spot.lng]}
       icon={icon}
-      onClick={onClick}
+      eventHandlers={{
+        click: onClick
+      }}
       title={spot.name}
-    />
+    >
+      <Popup maxWidth={250}>
+        <div className={styles.popup}>
+          <h3 className={styles.popupTitle}>{spot.name}</h3>
+          <p className={styles.popupSport}>{sportLabels[spot.sport]}</p>
+          {spot.description && (
+            <p className={styles.popupDescription}>{spot.description}</p>
+          )}
+          <p className={`${styles.popupStatus} ${isBlocked ? styles.blocked : styles.free}`}>
+            {isBlocked ? '🔴 Blocked' : '🟢 Free'}
+          </p>
+        </div>
+      </Popup>
+    </Marker>
   )
 }
