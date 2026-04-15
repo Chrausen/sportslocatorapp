@@ -15,25 +15,12 @@ Kiel, Germany. Users can add more spots via the UI; those are also persisted loc
 | UI               | React 19                            |
 | Build / Dev      | Vite 6                              |
 | State            | Redux Toolkit 2 + react-redux       |
-| Maps             | @react-google-maps/api              |
+| Maps             | react-leaflet + leaflet             |
 | PWA / Offline    | vite-plugin-pwa + Workbox           |
 | Persistence      | localStorage (spots + occupancy)    |
 | Linting          | ESLint 9                            |
 | Formatting       | Prettier 3                          |
 | CI / Hosting     | GitHub Actions → GitHub Pages       |
-
----
-
-## Environment Variables
-
-Create a `.env.local` file in the project root (never commit this):
-
-```
-VITE_GOOGLE_MAPS_API_KEY=your_key_here
-```
-
-The key must have the **Maps JavaScript API** enabled.
-For local dev, restrict the key to `http://localhost:5173`.
 
 ---
 
@@ -101,4 +88,4 @@ sportslocatorapp/
 - Single-user personal tool — no multi-user sync
 - Occupancy blocks expire automatically after **1 hour**
 - Seed data must not be editable or deletable by the user (`isUserAdded: false`)
-- Google Maps API key is required at runtime; app should show a clear error if missing
+- No API key required — map tiles are served by OpenStreetMap (free, open)

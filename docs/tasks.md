@@ -10,8 +10,7 @@ Check off tasks as they are done.
 > Goal: A working map that shows all 10 Kiel seed spots with correct pins and a basic detail panel.
 
 ### Setup
-- [ ] Install `@react-google-maps/api` and `nanoid`
-- [ ] Add `VITE_GOOGLE_MAPS_API_KEY` to `.env.local` (document in `CLAUDE.md`, add `.env.local` to `.gitignore`)
+- [ ] Install `react-leaflet`, `leaflet`, and `nanoid`
 - [ ] Create `src/data/seedSpots.js` with the 10 Kiel locations (see `architecture.md`)
 
 ### Redux Store
@@ -36,14 +35,13 @@ Check off tasks as they are done.
 - [ ] Create `src/hooks/useOccupancyExpiry.js` — 60-second interval → dispatches `purgeExpired`
 
 ### Map & Pins
-- [ ] Wrap app in `<LoadScript>` in `src/App.jsx`; show error message if API key is missing
 - [ ] Create `src/components/MapView/MapView.jsx`
-  - Full-viewport `<GoogleMap>` centered on user location (fallback: Kiel center)
+  - Full-viewport `<MapContainer>` + `<TileLayer>` (OpenStreetMap) centered on user location (fallback: Kiel center)
   - Calls `useUserLocation` and `useOccupancyExpiry`
 - [ ] Create `src/components/SportPin/SportPin.jsx`
-  - `<Marker>` with SVG icon colored by sport type and occupancy status (see color table in `architecture.md`)
-  - `onClick` dispatches `selectSpot(id)`
-- [ ] Add `<UserLocationMarker>` (blue dot) to `MapView`
+  - `<Marker>` with custom `divIcon` colored by sport type and occupancy status (see color table in `architecture.md`)
+  - `eventHandlers.click` dispatches `selectSpot(id)`
+- [ ] Add `<UserLocationMarker>` (blue dot `circleMarker`) to `MapView`
 
 ### Filter Bar
 - [ ] Create `src/components/FilterBar/FilterBar.jsx`
@@ -99,7 +97,7 @@ Check off tasks as they are done.
   - FAB that dispatches `setIsAddingSpot(true)`
 - [ ] Create `src/components/PinDropOverlay/PinDropOverlay.jsx`
   - Rendered over the map when `ui.isAddingSpot` is true
-  - Map `onClick` dispatches `setPendingPin({ lat, lng })` and opens `AddSpotForm`
+  - Uses `useMapEvents` hook to capture map clicks, dispatches `setPendingPin({ lat, lng })` and opens `AddSpotForm`
   - "Cancel" dispatches `setIsAddingSpot(false)` and `setPendingPin(null)`
 - [ ] Create `src/components/AddSpotForm/AddSpotForm.jsx`
   - Fields: name (required), sport type (select, required), description (optional)

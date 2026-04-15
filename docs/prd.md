@@ -32,7 +32,7 @@ quickly find the nearest available public spot.
 > all nearby sports spots, so I can orient myself at a glance.
 
 **Acceptance criteria:**
-- Map loads centered on the user's current GPS location
+- Map loads centered on the user's current GPS location using OpenStreetMap tiles (no API key required)
 - Falls back to Kiel city center (54.3213° N, 10.1348° E) if geolocation is denied
 - Each spot is shown as a pin colored and/or iconized by sport type
 - A filter bar lets the user show all spots or filter by one sport type

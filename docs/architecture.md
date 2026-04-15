@@ -103,21 +103,30 @@ Expired occupancy entries (where `Date.now() > Date.parse(ts)`) are filtered out
 
 ---
 
-## Google Maps Integration
+## Map Integration
 
-**Package:** `@react-google-maps/api`
+**Packages:** `react-leaflet` + `leaflet`
+
+No API key required. Tiles are served by OpenStreetMap.
 
 ```jsx
-// Single loader at App level
-<LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-  <GoogleMap ... />
-</LoadScript>
+// MapView.jsx
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet'
+
+<MapContainer center={[54.3213, 10.1348]} zoom={13} style={{ width: '100%', height: '100vh' }}>
+  <TileLayer
+    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  />
+  {/* SportPin markers rendered here */}
+</MapContainer>
 ```
 
-- `<GoogleMap>` fills the viewport; `mapContainerStyle={{ width: '100%', height: '100vh' }}`
-- One `<Marker>` per spot; `icon` prop set to a colored SVG pin based on sport + occupancy
-- `onClick` on each marker dispatches `uiSlice.selectSpot(id)`
+- `<MapContainer>` fills the viewport; center defaults to user location, fallback to Kiel center
+- One `<Marker>` per spot with a custom `divIcon` colored by sport + occupancy
+- `eventHandlers.click` on each marker dispatches `uiSlice.selectSpot(id)`
 - User location tracked via `navigator.geolocation.watchPosition` in a `useUserLocation` hook
+- `useMapEvents` hook used inside `MapContainer` for pin-drop mode (F7)
 
 **Pin colors:**
 
