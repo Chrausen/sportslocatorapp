@@ -59,7 +59,7 @@ quickly find the nearest available public spot.
 > so I don't have to copy coordinates manually.
 
 **Acceptance criteria:**
-- A "Navigate" button in the detail panel opens the native map app via a `geo:` URI or Google Maps URL
+- A "Navigate" button in the detail panel opens the native map app via a `geo:` URI
 - Works on both Android and iOS
 - Uses the spot's exact lat/lng coordinates
 
