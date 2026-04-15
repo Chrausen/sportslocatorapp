@@ -62,7 +62,7 @@ Check off tasks as they are done.
 
 ### Navigation Handoff (F3)
 - [ ] Create `src/components/NavigateButton/NavigateButton.jsx`
-  - Uses `buildNavigationUrl` and `window.open(..., '_blank')`
+  - Uses `buildNavigationUrl` and `window.open(url)` (opens device's native map app)
   - Rendered inside `LocationDetailPanel`
 
 ### Occupancy Reporting (F5)
@@ -117,5 +117,5 @@ Check off tasks as they are done.
 - [ ] Responsive layout: detail panel is a slide-up sheet on mobile, right-side panel on desktop
 - [ ] Accessible: all buttons have `aria-label`; color coding supplemented by icon/label
 - [ ] Empty state: if no spots match the current filter, show a friendly message on the map
-- [ ] Loading state: show a spinner while `LoadScript` initialises the Maps API
+- [ ] Loading state: show a spinner while map tiles load from OpenStreetMap
 - [ ] Error state: if geolocation is permanently denied, show a banner explaining the fallback
