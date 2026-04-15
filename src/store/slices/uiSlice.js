@@ -5,7 +5,8 @@ const initialState = {
   filter: 'all',
   userLocation: null,
   isAddingSpot: false,
-  pendingPin: null
+  pendingPin: null,
+  toast: null
 }
 
 const uiSlice = createSlice({
@@ -29,6 +30,12 @@ const uiSlice = createSlice({
     },
     setPendingPin: (state, action) => {
       state.pendingPin = action.payload
+    },
+    showToast: (state, action) => {
+      state.toast = action.payload
+    },
+    clearToast: (state) => {
+      state.toast = null
     }
   }
 })
@@ -39,7 +46,9 @@ export const {
   setFilter,
   setUserLocation,
   setIsAddingSpot,
-  setPendingPin
+  setPendingPin,
+  showToast,
+  clearToast
 } = uiSlice.actions
 
 export default uiSlice.reducer

@@ -2,6 +2,8 @@ import { LoadScript } from '@react-google-maps/api'
 import { MapView } from './components/MapView/MapView'
 import { FilterBar } from './components/FilterBar/FilterBar'
 import { LocationDetailPanel } from './components/LocationDetailPanel/LocationDetailPanel'
+import { FindNearestFreeButton } from './components/FindNearestFreeButton/FindNearestFreeButton'
+import { Toast } from './components/Toast/Toast'
 
 function App() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
@@ -23,7 +25,9 @@ function App() {
       <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
         <MapView />
         <FilterBar />
+        <FindNearestFreeButton />
         <LocationDetailPanel />
+        <Toast />
       </div>
     </LoadScript>
   )

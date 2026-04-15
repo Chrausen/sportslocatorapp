@@ -1,0 +1,20 @@
+.navigateButton {
+  width: 100%;
+  padding: 0.75rem;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.navigateButton:hover {
+  background: #1976D2;
+}
+
+.navigateButton:active {
+  background: #1565C0;
+}
