@@ -1,24 +1,24 @@
-## Sportslocator 
- 
+## Sportslocator
+
 Find a free public sport spot near you — instantly.
- 
-*Table Tennis · Basketball · Boule*
- 
+
+_Table Tennis · Basketball · Boule_
+
 ---
- 
+
 **Map view**
 Community-submitted pins show every public spot near you.
- 
+
 **Navigate instantly**
 One tap hands off to your phone's map app with directions.
-  
+
 **Find next free**
 Skip directly to the nearest spot when the one you arrived at is taken.
 
 ---
 
 # Features
- 
+
 - **Map view** — opens centered on your location with pins for table tennis, basketball, and boule spots
 - **Location detail** — tap a pin to see a description, distance, and availability
 - **Navigation** — one tap hands off to your phone's map app with directions

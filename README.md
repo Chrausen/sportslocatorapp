@@ -4,15 +4,15 @@ Find sports venues near you. A Progressive Web App (PWA) built with React and Vi
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| UI | React 19 |
-| Build / Dev server | Vite 6 |
-| State management | Redux Toolkit 2 + react-redux |
-| PWA / Offline | vite-plugin-pwa + Workbox |
-| Linting | ESLint 9 |
-| Formatting | Prettier 3 |
-| CI / Hosting | GitHub Actions → GitHub Pages |
+| Layer              | Technology                    |
+| ------------------ | ----------------------------- |
+| UI                 | React 19                      |
+| Build / Dev server | Vite 6                        |
+| State management   | Redux Toolkit 2 + react-redux |
+| PWA / Offline      | vite-plugin-pwa + Workbox     |
+| Linting            | ESLint 9                      |
+| Formatting         | Prettier 3                    |
+| CI / Hosting       | GitHub Actions → GitHub Pages |
 
 ## Project Structure
 
