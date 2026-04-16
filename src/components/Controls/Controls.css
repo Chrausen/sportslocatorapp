@@ -1,0 +1,130 @@
+.controls-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-controls);
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) 12px 12px;
+  pointer-events: none;
+}
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+/* Sport filter pills */
+.filter-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text-secondary);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(6px);
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.filter-pill:active {
+  transform: scale(0.96);
+}
+
+.filter-pill--active.filter-pill--all {
+  background: var(--text-primary);
+  color: #fff;
+}
+
+.filter-pill--active.filter-pill--table-tennis {
+  background: var(--color-tt);
+  color: #fff;
+}
+
+.filter-pill--active.filter-pill--basketball {
+  background: var(--color-bball);
+  color: #fff;
+}
+
+.filter-pill--active.filter-pill--boule {
+  background: var(--color-boule);
+  color: #fff;
+}
+
+/* Find nearest button */
+.find-nearest-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+  transition:
+    opacity 0.15s ease,
+    transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.find-nearest-btn:active {
+  transform: scale(0.96);
+}
+
+.find-nearest-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Add spot FAB */
+.add-spot-fab {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  right: 16px;
+  z-index: var(--z-controls);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.add-spot-fab:hover {
+  transform: scale(1.08);
+}
+
+.add-spot-fab:active {
+  transform: scale(0.94);
+}
+
+.add-spot-fab--cancel {
+  background: #e53935;
+}

@@ -6,7 +6,50 @@
   padding: 0;
 }
 
+:root {
+  /* Sport type colours */
+  --color-tt: #0097a7;
+  --color-bball: #f57c00;
+  --color-boule: #7b1fa2;
+
+  /* Status colours */
+  --color-blocked: #9e9e9e;
+  --color-available: #388e3c;
+
+  /* Accent */
+  --color-accent: #1565c0;
+
+  /* Surfaces */
+  --surface: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+
+  /* Shape */
+  --radius-lg: 16px;
+  --radius-sm: 8px;
+
+  /* Shadows */
+  --shadow-panel: 0 -4px 20px rgba(0, 0, 0, 0.15);
+
+  /* Transitions */
+  --transition: 0.25s ease;
+
+  /* Z-index layers */
+  --z-map: 0;
+  --z-controls: 1000;
+  --z-panel: 1100;
+  --z-modal: 1200;
+}
+
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f0f0f0;
+  overflow: hidden;
 }
