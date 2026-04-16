@@ -1,0 +1,83 @@
+.panel {
+  position: relative;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  padding: 20px 20px 28px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 280px;
+  max-width: 420px;
+  width: 100%;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #f5f5f5;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+}
+
+.closeBtn:hover {
+  background: #e0e0e0;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  padding-right: 36px;
+  color: #111;
+}
+
+.sport {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  margin: 0 0 10px;
+}
+
+.description {
+  font-size: 14px;
+  color: #444;
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.distance {
+  font-size: 13px;
+  color: #888;
+  margin: 0 0 10px;
+}
+
+.free {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: #E8F5E9;
+  color: #2E7D32;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.blocked {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: #FFEBEE;
+  color: #C62828;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+}

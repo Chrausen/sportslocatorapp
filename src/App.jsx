@@ -1,9 +1,19 @@
-function App() {
+import 'leaflet/dist/leaflet.css'
+import MapView from './components/MapView/MapView'
+import FilterBar from './components/FilterBar/FilterBar'
+import LocationDetailPanel from './components/LocationDetailPanel/LocationDetailPanel'
+import styles from './App.module.css'
+
+export default function App() {
   return (
-    <div style={{ textAlign: 'center', padding: '2rem' }}>
-      <h1 style={{ fontSize: '3rem', fontWeight: 'bold' }}>SportsLocator</h1>
+    <div className={styles.app}>
+      <MapView />
+      <div className={styles.filterBarWrapper}>
+        <FilterBar />
+      </div>
+      <div className={styles.panelWrapper}>
+        <LocationDetailPanel />
+      </div>
     </div>
   )
 }
-
-export default App
