@@ -12,20 +12,23 @@ export default defineConfig({
       manifest: {
         name: 'SportsLocator',
         short_name: 'SportsLocator',
-        description: 'Find sports venues near you',
-        theme_color: '#ffffff',
+        description: 'Find free public sports spots near you — table tennis, basketball, boule',
+        theme_color: '#1565C0',
         background_color: '#ffffff',
         display: 'standalone',
+        start_url: '/',
         icons: [
           {
             src: 'vite.svg',
             sizes: '192x192',
             type: 'image/svg+xml',
+            purpose: 'any maskable',
           },
           {
             src: 'vite.svg',
             sizes: '512x512',
             type: 'image/svg+xml',
+            purpose: 'any maskable',
           },
         ],
       },

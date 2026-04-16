@@ -13,11 +13,16 @@
   pointer-events: auto;
 }
 
-.fabWrapper {
+/* Two FABs side by side in the bottom-right corner */
+.fabRow {
   position: absolute;
-  bottom: 88px;
-  right: 20px;
+  bottom: 20px;
+  right: 16px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
   pointer-events: auto;
 }
 
@@ -31,14 +36,27 @@
   white-space: nowrap;
 }
 
+/* Mobile: slide-up panel from bottom */
 .panelWrapper {
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   z-index: 1000;
   pointer-events: auto;
-  width: 100%;
   display: flex;
   justify-content: center;
+}
+
+/* Desktop: right-side panel */
+@media (min-width: 768px) {
+  .panelWrapper {
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    width: 380px;
+    align-items: flex-start;
+    padding-top: 70px;
+  }
 }

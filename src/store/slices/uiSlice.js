@@ -9,6 +9,7 @@ const uiSlice = createSlice({
     isAddingSpot: false,
     pendingPin: null,
     toast: null,
+    geolocationDenied: false,
   },
   reducers: {
     selectSpot(state, action) {
@@ -35,6 +36,9 @@ const uiSlice = createSlice({
     clearToast(state) {
       state.toast = null
     },
+    setGeolocationDenied(state, action) {
+      state.geolocationDenied = action.payload
+    },
   },
 })
 
@@ -47,5 +51,6 @@ export const {
   setPendingPin,
   showToast,
   clearToast,
+  setGeolocationDenied,
 } = uiSlice.actions
 export default uiSlice.reducer

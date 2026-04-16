@@ -9,6 +9,16 @@
   width: 100%;
 }
 
+@media (min-width: 768px) {
+  .panel {
+    border-radius: 0;
+    height: 100%;
+    max-width: 380px;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+}
+
 .closeBtn {
   position: absolute;
   top: 14px;

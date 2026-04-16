@@ -4,6 +4,7 @@ import { distanceBetween } from '../../utils/distance'
 import NavigateButton from '../NavigateButton/NavigateButton'
 import OccupancyToggle from '../OccupancyToggle/OccupancyToggle'
 import RerouteButton from '../RerouteButton/RerouteButton'
+import DeleteSpotButton from '../DeleteSpotButton/DeleteSpotButton'
 import styles from './LocationDetailPanel.module.css'
 
 const SPORT_LABELS = {
@@ -61,6 +62,7 @@ export default function LocationDetailPanel() {
         <NavigateButton lat={spot.lat} lng={spot.lng} />
         <OccupancyToggle spotId={spot.id} isBlocked={isBlocked} />
         {isBlocked && <RerouteButton currentSpotId={spot.id} />}
+        {spot.isUserAdded && <DeleteSpotButton spotId={spot.id} />}
       </div>
     </div>
   )

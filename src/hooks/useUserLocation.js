@@ -1,12 +1,15 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setUserLocation } from '../store/slices/uiSlice'
+import { setUserLocation, setGeolocationDenied } from '../store/slices/uiSlice'
 
 export function useUserLocation() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!navigator.geolocation) return
+    if (!navigator.geolocation) {
+      dispatch(setGeolocationDenied(true))
+      return
+    }
 
     const watchId = navigator.geolocation.watchPosition(
       (position) => {
@@ -17,8 +20,11 @@ export function useUserLocation() {
           })
         )
       },
-      () => {
-        // Geolocation denied or unavailable — leave userLocation as null (Kiel fallback used in MapView)
+      (error) => {
+        // PERMISSION_DENIED = 1
+        if (error.code === 1) {
+          dispatch(setGeolocationDenied(true))
+        }
       },
       { enableHighAccuracy: true }
     )
