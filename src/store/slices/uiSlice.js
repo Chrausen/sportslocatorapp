@@ -8,6 +8,7 @@ const uiSlice = createSlice({
     userLocation: null,
     isAddingSpot: false,
     pendingPin: null,
+    toast: null,
   },
   reducers: {
     selectSpot(state, action) {
@@ -28,6 +29,12 @@ const uiSlice = createSlice({
     setPendingPin(state, action) {
       state.pendingPin = action.payload
     },
+    showToast(state, action) {
+      state.toast = action.payload
+    },
+    clearToast(state) {
+      state.toast = null
+    },
   },
 })
 
@@ -38,5 +45,7 @@ export const {
   setUserLocation,
   setIsAddingSpot,
   setPendingPin,
+  showToast,
+  clearToast,
 } = uiSlice.actions
 export default uiSlice.reducer

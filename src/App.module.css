@@ -13,6 +13,24 @@
   pointer-events: auto;
 }
 
+.fabWrapper {
+  position: absolute;
+  bottom: 88px;
+  right: 20px;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+.toastWrapper {
+  position: absolute;
+  bottom: 88px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1100;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 .panelWrapper {
   position: absolute;
   bottom: 0;

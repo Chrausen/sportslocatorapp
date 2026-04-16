@@ -1,0 +1,27 @@
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.block {
+  background: #FFEBEE;
+  color: #C62828;
+}
+
+.block:hover {
+  background: #FFCDD2;
+}
+
+.free {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.free:hover {
+  background: #C8E6C9;
+}

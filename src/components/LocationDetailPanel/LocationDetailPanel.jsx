@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { clearSelection } from '../../store/slices/uiSlice'
 import { distanceBetween } from '../../utils/distance'
+import NavigateButton from '../NavigateButton/NavigateButton'
+import OccupancyToggle from '../OccupancyToggle/OccupancyToggle'
+import RerouteButton from '../RerouteButton/RerouteButton'
 import styles from './LocationDetailPanel.module.css'
 
 const SPORT_LABELS = {
@@ -53,6 +56,12 @@ export default function LocationDetailPanel() {
       <p className={isBlocked ? styles.blocked : styles.free}>
         {isBlocked ? `Blocked until ${formatTime(blockedUntil)}` : 'Free'}
       </p>
+
+      <div className={styles.actions}>
+        <NavigateButton lat={spot.lat} lng={spot.lng} />
+        <OccupancyToggle spotId={spot.id} isBlocked={isBlocked} />
+        {isBlocked && <RerouteButton currentSpotId={spot.id} />}
+      </div>
     </div>
   )
 }
