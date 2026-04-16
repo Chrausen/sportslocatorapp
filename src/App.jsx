@@ -1,7 +1,27 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import './App.css'
+import { loadSeedData } from './store/facilitiesSlice'
+import { requestLocationThunk } from './store/locationSlice'
+import MapView from './components/MapView/MapView'
+import StatusBar from './components/StatusBar/StatusBar'
+import Controls from './components/Controls/Controls'
+
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadSeedData())
+    dispatch(requestLocationThunk())
+  }, [dispatch])
+
   return (
-    <div style={{ textAlign: 'center', padding: '2rem' }}>
-      <h1 style={{ fontSize: '3rem', fontWeight: 'bold' }}>SportsLocator</h1>
+    <div className="app">
+      <StatusBar />
+      <div className="map-wrapper">
+        <MapView />
+        <Controls />
+      </div>
     </div>
   )
 }

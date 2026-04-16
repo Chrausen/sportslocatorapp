@@ -1,0 +1,68 @@
+// Kiel, Germany – public sports facilities (seed / offline fallback data)
+// Coordinates reference real park areas in Kiel
+export const kielFacilities = [
+  {
+    id: 'kiel:tt-1',
+    name: 'Tischtennis Hiroshimapark',
+    sport: 'table_tennis',
+    lat: 54.3201,
+    lon: 10.1355,
+    source: 'seed',
+  },
+  {
+    id: 'kiel:tt-2',
+    name: 'Tischtennis Schrevenpark',
+    sport: 'table_tennis',
+    lat: 54.3289,
+    lon: 10.1198,
+    source: 'seed',
+  },
+  {
+    id: 'kiel:tt-3',
+    name: 'Tischtennis Düsternbrook',
+    sport: 'table_tennis',
+    lat: 54.3358,
+    lon: 10.1421,
+    source: 'seed',
+  },
+  {
+    id: 'kiel:bball-1',
+    name: 'Basketball Hiroshimapark',
+    sport: 'basketball',
+    lat: 54.3196,
+    lon: 10.1361,
+    source: 'seed',
+  },
+  {
+    id: 'kiel:bball-2',
+    name: 'Basketball Exerzierplatz',
+    sport: 'basketball',
+    lat: 54.3317,
+    lon: 10.1279,
+    source: 'seed',
+  },
+  {
+    id: 'kiel:bball-3',
+    name: 'Basketball Wik Sportanlage',
+    sport: 'basketball',
+    lat: 54.3402,
+    lon: 10.1523,
+    source: 'seed',
+  },
+  {
+    id: 'kiel:boules-1',
+    name: 'Boulebahn Schrevenpark',
+    sport: 'boules',
+    lat: 54.3281,
+    lon: 10.1185,
+    source: 'seed',
+  },
+  {
+    id: 'kiel:boules-2',
+    name: 'Boulebahn Dreiecksplatz',
+    sport: 'boules',
+    lat: 54.3244,
+    lon: 10.1312,
+    source: 'seed',
+  },
+]

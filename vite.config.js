@@ -29,6 +29,21 @@ export default defineConfig({
           },
         ],
       },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: /overpass-api\.de/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'overpass-cache',
+              networkTimeoutSeconds: 10,
+              expiration: {
+                maxAgeSeconds: 60 * 60 * 24, // 24 hours
+              },
+            },
+          },
+        ],
+      },
       devOptions: {
         enabled: true,
       },

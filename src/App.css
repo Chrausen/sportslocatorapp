@@ -1,0 +1,19 @@
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.map-wrapper {
+  flex: 1;
+  position: relative;
+  min-height: 0; /* critical: allows flex child to shrink below content height */
+}
