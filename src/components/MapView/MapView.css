@@ -2,12 +2,3 @@
   height: 100%;
   width: 100%;
 }
-
-/* Keep Leaflet tile pane below our UI overlays */
-.leaflet-pane {
-  z-index: 0;
-}
-.leaflet-top,
-.leaflet-bottom {
-  z-index: 10;
-}
