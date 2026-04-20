@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BLUE, FREE_COLOR } from '../../tokens'
 import Badge from '../UI/Badge'
 import SportChip from '../UI/SportChip'
@@ -17,10 +17,16 @@ export default function Sidebar({
   width,
 }) {
   const [search, setSearch] = useState('')
+  const [debouncedSearch, setDebouncedSearch] = useState('')
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedSearch(search), 200)
+    return () => clearTimeout(timer)
+  }, [search])
 
   const filteredSpots = spots
     .filter((s) => filter === 'all' || s.type === filter)
-    .filter((s) => s.name.toLowerCase().includes(search.toLowerCase()))
+    .filter((s) => s.name.toLowerCase().includes(debouncedSearch.toLowerCase()))
 
   const freeCount = spots.filter((s) => s.free && (filter === 'all' || s.type === filter)).length
 

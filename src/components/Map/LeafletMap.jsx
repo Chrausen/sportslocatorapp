@@ -3,9 +3,8 @@ import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { FREE_COLOR, OCC_COLOR, BLUE, SPORT_META } from '../../tokens'
-import { USER_LOCATION } from '../../store/spotsSlice'
+import { DEFAULT_USER_LOCATION } from '../../store/spotsSlice'
 
-// Custom teardrop pin icon matching the design
 function createPinIcon(color, emoji, isSelected) {
   const w = isSelected ? 32 : 28
   const h = isSelected ? 50 : 44
@@ -31,27 +30,24 @@ function createPinIcon(color, emoji, isSelected) {
           font-size="10" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,sans-serif">${emoji}</text>
     ${ring}
   </svg>`
+  return L.divIcon({ html, className: '', iconSize: [w, h], iconAnchor: [w / 2, h] })
+}
+
+function makeUserIcon(blue) {
   return L.divIcon({
-    html,
+    html: `<div style="position:relative;width:48px;height:48px;display:flex;align-items:center;justify-content:center">
+      <div style="position:absolute;inset:0;border-radius:50%;background:${blue};opacity:0.12"></div>
+      <div style="position:absolute;width:24px;height:24px;border-radius:50%;background:${blue};opacity:0.25;top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+      <div style="width:14px;height:14px;border-radius:50%;background:${blue};border:2.5px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.3);position:relative;z-index:1"></div>
+    </div>`,
     className: '',
-    iconSize: [w, h],
-    iconAnchor: [w / 2, h],
+    iconSize: [48, 48],
+    iconAnchor: [24, 24],
   })
 }
 
-// Blue pulsing dot for user location
-const userIcon = L.divIcon({
-  html: `<div style="position:relative;width:48px;height:48px;display:flex;align-items:center;justify-content:center">
-    <div style="position:absolute;inset:0;border-radius:50%;background:${BLUE};opacity:0.12"></div>
-    <div style="position:absolute;width:24px;height:24px;border-radius:50%;background:${BLUE};opacity:0.25;top:50%;left:50%;transform:translate(-50%,-50%)"></div>
-    <div style="width:14px;height:14px;border-radius:50%;background:${BLUE};border:2.5px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.3);position:relative;z-index:1"></div>
-  </div>`,
-  className: '',
-  iconSize: [48, 48],
-  iconAnchor: [24, 24],
-})
+const USER_ICON = makeUserIcon(BLUE)
 
-// Flies map to selected spot; exposes map instance via mapRef
 function MapController({ spotId, spots, mapRef }) {
   const map = useMap()
 
@@ -68,12 +64,15 @@ function MapController({ spotId, spots, mapRef }) {
   return null
 }
 
-export default function LeafletMap({ spots, selectedId, filter, onPinClick, mapRef }) {
+export default function LeafletMap({ spots, selectedId, filter, onPinClick, mapRef, userLocation }) {
   const visible = filter === 'all' ? spots : spots.filter((s) => s.type === filter)
+  const center = userLocation
+    ? [userLocation.lat, userLocation.lng]
+    : [DEFAULT_USER_LOCATION.lat, DEFAULT_USER_LOCATION.lng]
 
   return (
     <MapContainer
-      center={USER_LOCATION}
+      center={center}
       zoom={15}
       zoomControl={false}
       attributionControl={false}
@@ -87,10 +86,9 @@ export default function LeafletMap({ spots, selectedId, filter, onPinClick, mapR
 
       <MapController spotId={selectedId} spots={spots} mapRef={mapRef} />
 
-      {/* User location dot */}
-      <Marker position={USER_LOCATION} icon={userIcon} />
+      {/* User location dot — follows real geolocation */}
+      <Marker position={center} icon={USER_ICON} />
 
-      {/* Sport spot pins */}
       {visible.map((spot) => {
         const isSel = spot.id === selectedId
         const icon = createPinIcon(

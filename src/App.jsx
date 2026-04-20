@@ -1,12 +1,13 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   setSelected,
   setFilter,
   reportOccupied,
   clearOccupied,
+  setUserLocation,
+  selectSpotsWithDistance,
 } from './store/spotsSlice'
-import { BLUE } from './tokens'
 import Sidebar from './components/Sidebar/Sidebar'
 import LeafletMap from './components/Map/LeafletMap'
 import MapControls from './components/Map/MapControls'
@@ -16,12 +17,25 @@ const SIDEBAR_WIDTH = 340
 
 export default function App() {
   const dispatch = useDispatch()
-  const spots = useSelector((state) => state.spots.spots)
+  const spots = useSelector(selectSpotsWithDistance)
   const selectedSpotId = useSelector((state) => state.spots.selectedSpotId)
   const filter = useSelector((state) => state.spots.filter)
+  const userLocation = useSelector((state) => state.spots.userLocation)
 
   const [showSubmit, setShowSubmit] = useState(false)
   const mapRef = useRef(null)
+
+  // Request real user location once on mount
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (pos) =>
+        dispatch(
+          setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+        ),
+      (err) => console.warn('Standort nicht verfügbar', err),
+      { enableHighAccuracy: true },
+    )
+  }, [dispatch])
 
   const selectedSpot = spots.find((s) => s.id === selectedSpotId) ?? null
 
@@ -31,29 +45,17 @@ export default function App() {
 
   const handleReport = (spot) => {
     dispatch(reportOccupied(spot.id))
-    // Auto-clear after 1 hour
     setTimeout(() => dispatch(clearOccupied(spot.id)), 60 * 60 * 1000)
   }
 
+  // Selects the nearest free spot (spots are already sorted by distance)
   const handleFindNext = () => {
-    const freeSpots = spots.filter(
-      (s) => s.free && (filter === 'all' || s.type === filter)
-    )
-    if (freeSpots.length > 0) {
-      dispatch(setSelected(freeSpots[0].id))
-    }
+    const nearest = spots.find((s) => s.free && (filter === 'all' || s.type === filter))
+    if (nearest) dispatch(setSelected(nearest.id))
   }
 
   return (
-    <div
-      style={{
-        width: '100vw',
-        height: '100vh',
-        display: 'flex',
-        overflow: 'hidden',
-        background: '#EAE7DE',
-      }}
-    >
+    <div style={{ width: '100vw', height: '100vh', display: 'flex', overflow: 'hidden', background: '#EAE7DE' }}>
       <Sidebar
         spots={spots}
         selectedSpot={selectedSpot}
@@ -66,7 +68,6 @@ export default function App() {
         width={SIDEBAR_WIDTH}
       />
 
-      {/* Map area */}
       <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
         <LeafletMap
           spots={spots}
@@ -74,6 +75,7 @@ export default function App() {
           filter={filter}
           onPinClick={handleSpotClick}
           mapRef={mapRef}
+          userLocation={userLocation}
         />
 
         <div
@@ -91,10 +93,9 @@ export default function App() {
           © OpenStreetMap contributors © CARTO
         </div>
 
-        <MapControls onFindFree={handleFindNext} mapRef={mapRef} />
+        <MapControls onFindFree={handleFindNext} mapRef={mapRef} userLocation={userLocation} />
       </div>
 
-      {/* Submit Modal */}
       {showSubmit && (
         <div
           style={{

@@ -118,7 +118,14 @@ export default function DetailPanel({ spot, onClose, onReport, onFindNext }) {
       <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {!navConfirm ? (
           <button
-            onClick={() => setNavConfirm(true)}
+            onClick={() => {
+              setNavConfirm(true)
+              window.open(
+                `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`,
+                '_blank',
+                'noopener,noreferrer',
+              )
+            }}
             style={{
               height: 46,
               borderRadius: 12,

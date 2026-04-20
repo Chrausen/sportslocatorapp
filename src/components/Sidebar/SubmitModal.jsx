@@ -1,10 +1,32 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { submitSpot } from '../../store/spotsSlice'
 import { BLUE, BLUE_LIGHT, SPORT_META } from '../../tokens'
 
 export default function SubmitModal({ onClose }) {
+  const dispatch = useDispatch()
+  const userLocation = useSelector((s) => s.spots.userLocation)
+
   const [sportType, setSportType] = useState('table-tennis')
   const [desc, setDesc] = useState('')
   const [done, setDone] = useState(false)
+
+  const handleSubmit = () => {
+    dispatch(
+      submitSpot({
+        id: Date.now(),
+        type: sportType,
+        name: `Neuer ${SPORT_META[sportType].label} Spot`,
+        // Small random offset so the pin doesn't overlap the user dot
+        lat: userLocation.lat + (Math.random() - 0.5) * 0.008,
+        lng: userLocation.lng + (Math.random() - 0.5) * 0.012,
+        free: true,
+        desc: desc || 'Neu hinzugefügter Spot.',
+        rating: 0,
+      }),
+    )
+    setDone(true)
+  }
 
   if (done) {
     return (
@@ -23,7 +45,7 @@ export default function SubmitModal({ onClose }) {
         <div style={{ fontSize: 48 }}>🎉</div>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#111' }}>Spot eingereicht!</div>
         <p style={{ fontSize: 14, color: '#666', lineHeight: 1.6, maxWidth: 280 }}>
-          Vielen Dank! Dein Beitrag wird geprüft und erscheint bald auf der Karte.
+          Vielen Dank! Dein Beitrag wurde der Karte hinzugefügt.
         </p>
         <button
           onClick={onClose}
@@ -133,9 +155,7 @@ export default function SubmitModal({ onClose }) {
               }}
             >
               <div style={{ fontSize: 20, marginBottom: 5 }}>{SPORT_META[val].icon}</div>
-              <div
-                style={{ fontSize: 11, fontWeight: 600, color: sportType === val ? BLUE : '#666' }}
-              >
+              <div style={{ fontSize: 11, fontWeight: 600, color: sportType === val ? BLUE : '#666' }}>
                 {SPORT_META[val].label}
               </div>
             </button>
@@ -182,7 +202,7 @@ export default function SubmitModal({ onClose }) {
       </div>
 
       <button
-        onClick={() => setDone(true)}
+        onClick={handleSubmit}
         style={{
           height: 48,
           borderRadius: 12,
