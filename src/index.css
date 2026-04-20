@@ -57,3 +57,19 @@ input {
     opacity: 1;
   }
 }
+
+/* Leaflet overrides */
+.leaflet-container {
+  font-family: 'DM Sans', sans-serif;
+  background: #EAE7DE;
+}
+
+/* Hide default attribution (we show it via overlay) */
+.leaflet-control-attribution {
+  display: none;
+}
+
+/* Ensure pins don't get clipped */
+.leaflet-marker-icon {
+  overflow: visible !important;
+}

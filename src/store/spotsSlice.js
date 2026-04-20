@@ -1,12 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// User reference position (Munich city center)
+export const USER_LOCATION = [48.1351, 11.582]
+
 const SPOTS_INIT = [
   {
     id: 1,
     type: 'table-tennis',
     name: 'Stadtpark Tischtennistische',
-    x: 390,
-    y: 270,
+    lat: 48.1372,
+    lng: 11.5764,
     free: true,
     distance: '0.3 km',
     desc: 'Zwei Außentische direkt am Teich, teilweise durch ein Dach geschützt. Schläger nicht vorhanden.',
@@ -16,8 +19,8 @@ const SPOTS_INIT = [
     id: 2,
     type: 'table-tennis',
     name: 'Spielplatz Nordmitte',
-    x: 620,
-    y: 160,
+    lat: 48.1412,
+    lng: 11.5893,
     free: false,
     distance: '0.7 km',
     desc: 'Ein Tisch auf dem Spielplatz, etwas abgenutzte Platte. Aktuell belegt.',
@@ -27,8 +30,8 @@ const SPOTS_INIT = [
     id: 3,
     type: 'table-tennis',
     name: 'Freizeitanlage Süd',
-    x: 560,
-    y: 490,
+    lat: 48.1231,
+    lng: 11.5805,
     free: true,
     distance: '1.4 km',
     desc: 'Drei Tische, gepflegt und in gutem Zustand. Toiletten in der Nähe.',
@@ -38,8 +41,8 @@ const SPOTS_INIT = [
     id: 4,
     type: 'basketball',
     name: 'Basketballfeld Nordpark',
-    x: 230,
-    y: 155,
+    lat: 48.1432,
+    lng: 11.5698,
     free: true,
     distance: '0.9 km',
     desc: 'Full Court, beleuchtet bis 22 Uhr. Neuer Asphalt, gute Körbe.',
@@ -49,8 +52,8 @@ const SPOTS_INIT = [
     id: 5,
     type: 'basketball',
     name: 'Schulhof Sportplatz',
-    x: 730,
-    y: 380,
+    lat: 48.1378,
+    lng: 11.5965,
     free: false,
     distance: '1.1 km',
     desc: 'Half Court, wochentags oft durch Schule belegt. Wochenends frei.',
@@ -60,8 +63,8 @@ const SPOTS_INIT = [
     id: 6,
     type: 'boule',
     name: 'Boulebahn Westpark',
-    x: 135,
-    y: 380,
+    lat: 48.1364,
+    lng: 11.5715,
     free: true,
     distance: '0.6 km',
     desc: '3 gepflegte Sandbahnen mit Bänken. Sehr beliebt am Abend.',
@@ -71,8 +74,8 @@ const SPOTS_INIT = [
     id: 7,
     type: 'boule',
     name: 'Marktplatz Boule',
-    x: 590,
-    y: 340,
+    lat: 48.1358,
+    lng: 11.5875,
     free: true,
     distance: '0.8 km',
     desc: '2 Bahnen am historischen Marktplatz. Schöne Atmosphäre.',
@@ -94,7 +97,6 @@ const spotsSlice = createSlice({
     },
     setFilter(state, action) {
       state.filter = action.payload
-      // Keep selection only if spot is still visible after filter change
       if (action.payload !== 'all' && state.selectedSpotId !== null) {
         const spot = state.spots.find((s) => s.id === state.selectedSpotId)
         if (spot && spot.type !== action.payload) {

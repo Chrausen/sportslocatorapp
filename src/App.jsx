@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   setSelected,
@@ -8,7 +8,7 @@ import {
 } from './store/spotsSlice'
 import { BLUE } from './tokens'
 import Sidebar from './components/Sidebar/Sidebar'
-import MapSVG from './components/Map/MapSVG'
+import LeafletMap from './components/Map/LeafletMap'
 import MapControls from './components/Map/MapControls'
 import SubmitModal from './components/Sidebar/SubmitModal'
 
@@ -21,6 +21,7 @@ export default function App() {
   const filter = useSelector((state) => state.spots.filter)
 
   const [showSubmit, setShowSubmit] = useState(false)
+  const mapRef = useRef(null)
 
   const selectedSpot = spots.find((s) => s.id === selectedSpotId) ?? null
 
@@ -67,11 +68,12 @@ export default function App() {
 
       {/* Map area */}
       <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
-        <MapSVG
+        <LeafletMap
           spots={spots}
           selectedId={selectedSpotId}
           filter={filter}
           onPinClick={handleSpotClick}
+          mapRef={mapRef}
         />
 
         <div
@@ -82,12 +84,14 @@ export default function App() {
             fontSize: 10,
             color: 'rgba(0,0,0,0.3)',
             fontFamily: 'DM Mono, monospace',
+            zIndex: 1000,
+            pointerEvents: 'none',
           }}
         >
-          © SportsLocator Community Map
+          © OpenStreetMap contributors © CARTO
         </div>
 
-        <MapControls onFindFree={handleFindNext} />
+        <MapControls onFindFree={handleFindNext} mapRef={mapRef} />
       </div>
 
       {/* Submit Modal */}

@@ -1,6 +1,11 @@
 import { FREE_COLOR, BLUE } from '../../tokens'
+import { USER_LOCATION } from '../../store/spotsSlice'
 
-export default function MapControls({ onFindFree }) {
+export default function MapControls({ onFindFree, mapRef }) {
+  const handleLocate = () => {
+    mapRef?.current?.flyTo(USER_LOCATION, 16, { duration: 0.5 })
+  }
+
   return (
     <div
       style={{
@@ -10,7 +15,7 @@ export default function MapControls({ onFindFree }) {
         display: 'flex',
         flexDirection: 'column',
         gap: 10,
-        zIndex: 10,
+        zIndex: 1000,
       }}
     >
       {/* Zoom group */}
@@ -27,6 +32,11 @@ export default function MapControls({ onFindFree }) {
         {['+', '−'].map((sym, i) => (
           <button
             key={sym}
+            onClick={() => {
+              const map = mapRef?.current
+              if (!map) return
+              sym === '+' ? map.zoomIn() : map.zoomOut()
+            }}
             style={{
               width: 38,
               height: 38,
@@ -73,13 +83,19 @@ export default function MapControls({ onFindFree }) {
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <circle cx="7" cy="7" r="5.5" stroke="white" strokeWidth="1.5" />
           <circle cx="7" cy="7" r="2" fill="white" />
-          <path d="M7 1v2M7 11v2M1 7h2M11 7h2" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+          <path
+            d="M7 1v2M7 11v2M1 7h2M11 7h2"
+            stroke="white"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
         </svg>
         Nächsten freien finden
       </button>
 
       {/* My location */}
       <button
+        onClick={handleLocate}
         style={{
           width: 38,
           height: 38,
@@ -98,7 +114,12 @@ export default function MapControls({ onFindFree }) {
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <circle cx="8" cy="8" r="3" fill={BLUE} />
           <circle cx="8" cy="8" r="6" stroke={BLUE} strokeWidth="1.5" fill="none" />
-          <path d="M8 1v3M8 12v3M1 8h3M12 8h3" stroke={BLUE} strokeWidth="1.5" strokeLinecap="round" />
+          <path
+            d="M8 1v3M8 12v3M1 8h3M12 8h3"
+            stroke={BLUE}
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
         </svg>
       </button>
     </div>
